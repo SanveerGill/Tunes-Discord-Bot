@@ -1,3 +1,3 @@
 # Tunes - A Discord Music Bot 
 
-Created using Python 
+Discord bot which plays music in the voice channel. Created using Python.  
