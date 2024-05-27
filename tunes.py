@@ -44,7 +44,6 @@ def run_bot():
 
                 try:
                     search_query = ' '.join(message.content.split()[1:])
-                    await message.channel.send(f"{search_query}")
                     if ("youtube.com" in search_query):
                         url = search_query
                     else:
@@ -52,6 +51,7 @@ def run_bot():
                     loop = asyncio.get_event_loop()
                     data = await loop.run_in_executor(None, lambda: ytdl.extract_info(url, download=False))
                     song = data['url']
+                    await message.channel.send(f"Now Playing: {data['title']}")
                     audio_source = discord.FFmpegOpusAudio(song, **ffmpeg_options)
                     voice_clients[message.guild.id].play(audio_source)
                 except discord.errors.ClientException as e:
